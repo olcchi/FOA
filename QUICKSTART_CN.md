@@ -26,7 +26,29 @@ pip install -r requirements.txt
 
 2. （可选）如需要可配置其他AI提供商
 
-### 3. 基本使用
+### 3. 🌟 推荐：交互式模式（最简单的方式）
+
+```bash
+# 直接运行脚本 - 无需任何参数！
+python file_organizer.py
+```
+
+**为什么使用交互式模式？**
+- 🎯 **新手友好**：无需记忆命令
+- 🌍 **多语言支持**：选择中文或英文界面
+- 📋 **引导式工作流**：逐步菜单导航
+- ⚡ **功能齐全**：通过菜单访问整理、分析、撤销、统计等所有功能
+- 🛡️ **安全可靠**：内置预览和确认提示
+
+**交互式模式特性：**
+1. **语言选择**：选择您偏好的界面语言
+2. **命令菜单**：从整理、撤销、统计、分析或退出中选择
+3. **智能配置**：为每个命令交互式选择参数
+4. **实时指导**：有用的提示和说明
+
+### 4. 传统命令行使用（高级用户）
+
+如果您偏好命令行界面：
 
 #### 预览模式（安全 - 不会进行实际更改）
 ```bash
@@ -46,6 +68,12 @@ python file_organizer.py organize --dir ./test_files
 python file_organizer.py analyze ./test_files/sample_document.txt
 ```
 
+#### 中文界面
+```bash
+# 使用中文界面
+python file_organizer.py --language zh organize --dir ./test_files
+```
+
 ### 4. 可用命令
 
 - `organize` - 整理目录中的文件
@@ -62,6 +90,23 @@ python file_organizer.py analyze ./test_files/sample_document.txt
 
 ### 6. 示例工作流程
 
+#### 🌟 交互式模式工作流程（推荐）
+```bash
+# 1. 启动交互式模式
+python file_organizer.py
+
+# 2. 按照菜单提示操作：
+#    - 选择语言（中文/英文）
+#    - 选择"整理文件"
+#    - 输入目标目录：./downloads
+#    - 选择预览模式：是
+#    - 查看预览结果
+#    - 确认继续或取消
+
+# 3. 使用菜单检查统计信息或在需要时撤销
+```
+
+#### 传统命令行工作流程
 ```bash
 # 1. 首先预览将要发生的操作
 python file_organizer.py organize --dir ./downloads --preview
@@ -116,8 +161,20 @@ your_directory/
 
 ### 10. 测试文件演示
 
-使用包含的测试文件试用代理：
+#### 🌟 交互式模式演示（推荐）
+```bash
+# 启动交互式模式并按照提示操作
+python file_organizer.py
 
+# 在交互式菜单中：
+# 1. 选择您的语言
+# 2. 选择"整理文件"
+# 3. 输入目录：./test_files
+# 4. 启用预览模式查看将要发生的操作
+# 5. 如果满意则继续整理
+```
+
+#### 命令行演示
 ```bash
 # 预览测试文件的整理
 python file_organizer.py organize --dir ./test_files --preview
@@ -127,3 +184,9 @@ python file_organizer.py organize --dir ./test_files
 ```
 
 这将演示代理如何分类和重命名不同类型的文件！
+
+### 🎯 快速开始总结
+
+**新手用户**：直接运行 `python file_organizer.py` 并按照交互式菜单操作！
+
+**高级用户**：使用命令行参数进行自动化和脚本编程。

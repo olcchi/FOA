@@ -299,5 +299,183 @@ def analyze(ctx, file_path, provider, config):
         raise click.Abort()
 
 
+def interactive_menu():
+    """Interactive menu for selecting command and options."""
+    import sys
+    
+    # Check if we need interactive mode (no arguments provided)
+    if len(sys.argv) == 1:
+        try:
+            # Try to import inquirer for interactive menus
+            import inquirer
+        except ImportError:
+            click.echo("Interactive mode requires 'inquirer' package.")
+            click.echo("Install it with: pip install inquirer")
+            click.echo("\nOr use command line arguments directly:")
+            click.echo("  python file_organizer.py organize --help")
+            return
+        
+        # Language selection
+        language_question = [
+            inquirer.List('language',
+                         message="Select interface language / 选择界面语言",
+                         choices=[('English', 'en'), ('中文', 'zh')],
+                         default='en')
+        ]
+        language_answer = inquirer.prompt(language_question)
+        if not language_answer:
+            return
+        
+        selected_language = language_answer['language']
+        
+        # Set language for subsequent prompts
+        from i18n import set_language
+        set_language(selected_language)
+        
+        # Command selection
+        command_choices = [
+            ('Organize files / 整理文件', 'organize'),
+            ('Undo last operation / 撤销上次操作', 'undo'),
+            ('Show statistics / 显示统计信息', 'stats'),
+            ('Analyze single file / 分析单个文件', 'analyze'),
+            ('Exit / 退出', 'exit')
+        ]
+        
+        command_question = [
+            inquirer.List('command',
+                         message="Select command / 选择命令",
+                         choices=command_choices)
+        ]
+        command_answer = inquirer.prompt(command_question)
+        if not command_answer or command_answer['command'] == 'exit':
+            return
+        
+        selected_command = command_answer['command']
+        
+        # Build command arguments
+        args = ['file_organizer.py', '--language', selected_language, selected_command]
+        
+        if selected_command == 'organize':
+            # Organize command options
+            organize_questions = [
+                inquirer.Path('directory',
+                             message="Directory to organize / 要整理的目录",
+                             default='.',
+                             path_type=inquirer.Path.DIRECTORY),
+                inquirer.List('provider',
+                             message="AI provider / AI提供商",
+                             choices=[('DeepSeek', 'deepseek'), ('OpenAI', 'openai'), ('Router', 'router')],
+                             default='deepseek'),
+                inquirer.Path('config',
+                             message="Configuration file / 配置文件",
+                             default='config.yaml',
+                             path_type=inquirer.Path.FILE),
+                inquirer.Confirm('preview',
+                               message="Preview mode (no actual changes) / 预览模式（不实际修改）",
+                               default=True),
+                inquirer.Confirm('recursive',
+                               message="Process files recursively / 递归处理文件",
+                               default=True),
+                inquirer.Confirm('interactive_confirm',
+                               message="Interactive mode (confirm each operation) / 交互模式（确认每个操作）",
+                               default=False)
+            ]
+            
+            organize_answers = inquirer.prompt(organize_questions)
+            if not organize_answers:
+                return
+            
+            # Add options to args
+            if organize_answers['directory'] != '.':
+                args.extend(['--dir', organize_answers['directory']])
+            if organize_answers['provider'] != 'deepseek':
+                args.extend(['--provider', organize_answers['provider']])
+            if organize_answers['config'] != 'config.yaml':
+                args.extend(['--config', organize_answers['config']])
+            if organize_answers['preview']:
+                args.append('--preview')
+            if not organize_answers['recursive']:
+                args.append('--no-recursive')
+            if organize_answers['interactive_confirm']:
+                args.append('--interactive')
+        
+        elif selected_command == 'undo':
+            # Undo command options
+            undo_questions = [
+                inquirer.Path('directory',
+                             message="Directory where organization was performed / 执行整理操作的目录",
+                             default='.',
+                             path_type=inquirer.Path.DIRECTORY),
+                inquirer.Path('config',
+                             message="Configuration file / 配置文件",
+                             default='config.yaml',
+                             path_type=inquirer.Path.FILE)
+            ]
+            
+            undo_answers = inquirer.prompt(undo_questions)
+            if not undo_answers:
+                return
+            
+            if undo_answers['directory'] != '.':
+                args.extend(['--dir', undo_answers['directory']])
+            if undo_answers['config'] != 'config.yaml':
+                args.extend(['--config', undo_answers['config']])
+        
+        elif selected_command == 'stats':
+            # Stats command options
+            stats_questions = [
+                inquirer.Path('directory',
+                             message="Directory to check / 要检查的目录",
+                             default='.',
+                             path_type=inquirer.Path.DIRECTORY),
+                inquirer.Path('config',
+                             message="Configuration file / 配置文件",
+                             default='config.yaml',
+                             path_type=inquirer.Path.FILE)
+            ]
+            
+            stats_answers = inquirer.prompt(stats_questions)
+            if not stats_answers:
+                return
+            
+            if stats_answers['directory'] != '.':
+                args.extend(['--dir', stats_answers['directory']])
+            if stats_answers['config'] != 'config.yaml':
+                args.extend(['--config', stats_answers['config']])
+        
+        elif selected_command == 'analyze':
+            # Analyze command options
+            analyze_questions = [
+                inquirer.Path('file_path',
+                             message="File to analyze / 要分析的文件",
+                             path_type=inquirer.Path.FILE),
+                inquirer.List('provider',
+                             message="AI provider / AI提供商",
+                             choices=[('DeepSeek', 'deepseek'), ('OpenAI', 'openai'), ('Router', 'router')],
+                             default='deepseek'),
+                inquirer.Path('config',
+                             message="Configuration file / 配置文件",
+                             default='config.yaml',
+                             path_type=inquirer.Path.FILE)
+            ]
+            
+            analyze_answers = inquirer.prompt(analyze_questions)
+            if not analyze_answers:
+                return
+            
+            args.append(analyze_answers['file_path'])
+            if analyze_answers['provider'] != 'deepseek':
+                args.extend(['--provider', analyze_answers['provider']])
+            if analyze_answers['config'] != 'config.yaml':
+                args.extend(['--config', analyze_answers['config']])
+        
+        # Execute the command with collected arguments
+        sys.argv = args
+        cli()
+    else:
+        # Normal CLI mode
+        cli()
+
+
 if __name__ == '__main__':
-    cli()
+    interactive_menu()

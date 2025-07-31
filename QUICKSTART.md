@@ -26,7 +26,29 @@ pip install -r requirements.txt
 
 2. (Optional) Configure other AI providers if needed
 
-### 3. Basic Usage
+### 3. 🌟 Recommended: Interactive Mode (Easiest Way)
+
+```bash
+# Simply run the script - no arguments needed!
+python file_organizer.py
+```
+
+**Why use Interactive Mode?**
+- 🎯 **Beginner-friendly**: No need to memorize commands
+- 🌍 **Multi-language**: Choose English or Chinese interface
+- 📋 **Guided workflow**: Step-by-step menu navigation
+- ⚡ **All features**: Access organize, analyze, undo, stats through menus
+- 🛡️ **Safe**: Built-in preview and confirmation prompts
+
+**Interactive Mode Features:**
+1. **Language Selection**: Choose your preferred interface language
+2. **Command Menu**: Select from organize, undo, stats, analyze, or exit
+3. **Smart Configuration**: Interactive parameter selection for each command
+4. **Real-time Guidance**: Helpful prompts and explanations
+
+### 4. Traditional Command Line Usage (Advanced)
+
+If you prefer command-line interface:
 
 #### Preview Mode (Safe - No Changes Made)
 ```bash
@@ -46,6 +68,12 @@ python file_organizer.py organize --dir ./test_files
 python file_organizer.py analyze ./test_files/sample_document.txt
 ```
 
+#### Chinese Interface
+```bash
+# Use Chinese interface
+python file_organizer.py --language zh organize --dir ./test_files
+```
+
 ### 4. Available Commands
 
 - `organize` - Organize files in a directory
@@ -60,8 +88,25 @@ python file_organizer.py analyze ./test_files/sample_document.txt
 - `--recursive` - Process subdirectories (default: true)
 - `--interactive` - Confirm each operation
 
-### 6. Example Workflow
+### 6. Example Workflows
 
+#### 🌟 Interactive Mode Workflow (Recommended)
+```bash
+# 1. Start interactive mode
+python file_organizer.py
+
+# 2. Follow the menu prompts:
+#    - Select language (English/Chinese)
+#    - Choose "Organize files"
+#    - Enter target directory: ./downloads
+#    - Select preview mode: Yes
+#    - Review the preview results
+#    - Confirm to proceed or cancel
+
+# 3. Use menu to check stats or undo if needed
+```
+
+#### Traditional Command Line Workflow
 ```bash
 # 1. First, preview what would happen
 python file_organizer.py organize --dir ./downloads --preview
@@ -116,8 +161,20 @@ your_directory/
 
 ### 10. Demo with Test Files
 
-Try the agent with the included test files:
+#### 🌟 Interactive Mode Demo (Recommended)
+```bash
+# Start interactive mode and follow the prompts
+python file_organizer.py
 
+# In the interactive menu:
+# 1. Select your language
+# 2. Choose "Organize files"
+# 3. Enter directory: ./test_files
+# 4. Enable preview mode to see what would happen
+# 5. Proceed with organization if satisfied
+```
+
+#### Command Line Demo
 ```bash
 # Preview organization of test files
 python file_organizer.py organize --dir ./test_files --preview
@@ -127,3 +184,9 @@ python file_organizer.py organize --dir ./test_files
 ```
 
 This will demonstrate how the agent categorizes and renames different file types!
+
+### 🎯 Quick Start Summary
+
+**For beginners**: Just run `python file_organizer.py` and follow the interactive menu!
+
+**For advanced users**: Use command-line arguments for automation and scripting.

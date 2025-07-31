@@ -10,12 +10,14 @@ An intelligent file organizing agent that automatically categorizes and renames 
 
 ### Features
 
+- **🌟 Interactive Mode**: User-friendly menu interface with multi-language support
 - **Smart File Classification**: Automatically categorize files by content and type
 - **Intelligent Renaming**: Generate meaningful file names based on content analysis
 - **Multiple AI Providers**: Support for DeepSeek, OpenAI, and other providers via API router
 - **Batch Processing**: Process multiple files or entire directories
 - **Safe Operations**: Preview mode and backup options
-- **CLI Interface**: Simple command-line interface for easy usage
+- **Dual Interface**: Both interactive menu and traditional CLI modes
+- **Multi-language**: English and Chinese interface support
 
 ### Installation
 
@@ -30,15 +32,34 @@ pip install -r requirements.txt
 
 ### Usage
 
+#### 🌟 Recommended: Interactive Mode (Easiest)
+
+```bash
+# Simply run the script to enter interactive mode
+python file_organizer.py
+```
+
+The interactive mode provides:
+- User-friendly menu interface
+- Step-by-step guidance
+- Multi-language support (English/Chinese)
+- All features accessible through simple selections
+- No need to remember command-line arguments
+
+#### Traditional Command Line Mode
+
 ```bash
 # Organize files in current directory
-python file_organizer.py --dir .
+python file_organizer.py organize --dir .
 
 # Preview mode (no actual changes)
-python file_organizer.py --dir ./downloads --preview
+python file_organizer.py organize --dir ./downloads --preview
 
 # Use specific AI provider
-python file_organizer.py --dir ./documents --provider deepseek
+python file_organizer.py organize --dir ./documents --provider deepseek
+
+# Chinese interface
+python file_organizer.py --language zh organize --dir ./documents
 ```
 
 ### Project Structure
@@ -59,12 +80,14 @@ python file_organizer.py --dir ./documents --provider deepseek
 
 ### 功能特性
 
+- **🌟 交互式模式**: 友好的菜单界面，支持多语言
 - **智能文件分类**: 根据内容和类型自动分类文件
 - **智能重命名**: 基于内容分析生成有意义的文件名
 - **多AI提供商**: 支持DeepSeek、OpenAI等多种AI提供商
 - **批量处理**: 处理多个文件或整个目录
 - **安全操作**: 预览模式和备份选项
-- **命令行界面**: 简单易用的命令行接口
+- **双重界面**: 交互式菜单和传统命令行模式
+- **多语言支持**: 中文和英文界面
 
 ### 安装
 
@@ -79,15 +102,34 @@ pip install -r requirements.txt
 
 ### 使用方法
 
+#### 🌟 推荐：交互式模式（最简单）
+
+```bash
+# 直接运行脚本进入交互模式
+python file_organizer.py
+```
+
+交互式模式提供：
+- 友好的菜单界面
+- 逐步指导
+- 多语言支持（中文/英文）
+- 通过简单选择访问所有功能
+- 无需记忆命令行参数
+
+#### 传统命令行模式
+
 ```bash
 # 整理当前目录中的文件
-python file_organizer.py --dir .
+python file_organizer.py organize --dir .
 
 # 预览模式（不进行实际更改）
-python file_organizer.py --dir ./downloads --preview
+python file_organizer.py organize --dir ./downloads --preview
 
 # 使用特定的AI提供商
-python file_organizer.py --dir ./documents --provider deepseek
+python file_organizer.py organize --dir ./documents --provider deepseek
+
+# 中文界面
+python file_organizer.py --language zh organize --dir ./documents
 ```
 
 ### 项目结构
