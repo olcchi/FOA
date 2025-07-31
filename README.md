@@ -1,4 +1,4 @@
-# Smart File Organizer Agent
+# File Organizer Agent
 
 [English](#english) | [中文](#chinese)
 
