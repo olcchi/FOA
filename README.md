@@ -80,7 +80,7 @@ python file_organizer.py --language zh organize --dir ./documents
 
 ### 功能特性
 
-- **🌟 交互式模式**: 友好的菜单界面，支持多语言
+- **交互式模式**: 友好的菜单界面，支持多语言
 - **智能文件分类**: 根据内容和类型自动分类文件
 - **智能重命名**: 基于内容分析生成有意义的文件名
 - **多AI提供商**: 支持DeepSeek、OpenAI等多种AI提供商
