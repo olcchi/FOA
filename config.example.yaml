@@ -1,0 +1,55 @@
+# AI Provider Configuration
+ai_providers:
+  deepseek:
+    api_key: "your_deepseek_api_key_here"
+    base_url: "https://api.deepseek.com/v1"
+    model: "deepseek-chat"
+  
+  openai:
+    api_key: "your_openai_api_key_here"
+    base_url: "https://api.openai.com/v1"
+    model: "gpt-3.5-turbo"
+  
+  # API Router configuration (if using)
+  router:
+    api_key: "your_router_api_key_here"
+    base_url: "https://your-api-router.com/v1"
+    model: "auto"
+
+# Default AI provider to use
+default_provider: "deepseek"
+
+# File organization settings
+organization:
+  # Create backup before organizing
+  create_backup: true
+  
+  # Maximum file size to analyze (in MB)
+  max_file_size: 50
+  
+  # Supported file types for content analysis
+  supported_types:
+    - ".txt"
+    - ".md"
+    - ".pdf"
+    - ".doc"
+    - ".docx"
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".mp4"
+    - ".mp3"
+  
+  # Default folder structure
+  categories:
+    documents: ["pdf", "doc", "docx", "txt", "md"]
+    images: ["jpg", "jpeg", "png", "gif", "bmp"]
+    videos: ["mp4", "avi", "mkv", "mov"]
+    audio: ["mp3", "wav", "flac", "aac"]
+    archives: ["zip", "rar", "7z", "tar"]
+    code: ["py", "js", "html", "css", "java", "cpp"]
+
+# Logging configuration
+logging:
+  level: "INFO"
+  file: "file_organizer.log"
